@@ -148,6 +148,11 @@ let g:indent_guides_guide_size = 1
 NeoBundle 'bronson/vim-trailing-whitespace'
 
 
+""""""""""""""""""""" plugin Git vim-fugitive """""""""""""""""""""
+NeoBundle 'tpope/vim-fugitive'
+
+
+""""""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
 call neobundle#end()
@@ -180,3 +185,42 @@ if has('syntax')
     call ZenkakuSpace()
 endif
 """"""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" 挿入モード時、ステータスラインの色を変更
+" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
+""""""""""""""""""""""""""""""
+let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+
+if has('syntax')
+  augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+endif
+
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+  endif
+endfunction
+
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
+""""""""""""""""""""""""""""""
+
+" ステータスラインを変更
+:set statusline=%F%m%r%h%w\ [ENC=%{&fileencoding}/%{&ff}]\ [%Y]\ [%04l/%L,%04v][%p%%]\ [0x%B]
+:set laststatus=2
