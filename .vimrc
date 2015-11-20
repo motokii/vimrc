@@ -9,8 +9,8 @@
 "	      for Amiga:  s:.vimrc
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
-
 " When started as "evim", evim.vim will already have done these settings.
+
 if v:progname =~? "evim"
   finish
 endif
@@ -99,31 +99,28 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NeoBundle
 " neobundle settings {{{
-  if has('vim_starting')
-  set nocompatible
-  " neobundle をインストールしていない場合は自動インストール
-  if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-    echo "install neobundle..."
-    " vim からコマンド呼び出しているだけ neobundle.vim のクローン
-    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
-  endif
-  " runtimepath の追加は必須
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if has('vim_starting')
+    set nocompatible
+    " neobundle をインストールしていない場合は自動インストール
+    if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
+        echo "install neobundle..."
+        " vim からコマンド呼び出しているだけ neobundle.vim のクローン
+        :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
+    endif
+    " runtimepath の追加は必須
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 call neobundle#begin(expand('~/.vim/bundle'))
 let g:neobundle_default_git_protocol='https'
 
 " neobundle#begin - neobundle#end の間に導入するプラグインを記載します。
 NeoBundleFetch 'Shougo/neobundle.vim'
-" ↓こんな感じが基本の書き方
 NeoBundle 'nanotech/jellybeans.vim'
+
 
 """"""""""""""""""""" plugin vim-indent-guides """""""""""""""""""""
 " インデントに色を付けて見やすくする
 NeoBundle 'nathanaelkane/vim-indent-guides'
-" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-"let g:indent_guides_enable_on_vim_startup = 1
-
 set tabstop=4
 set shiftwidth=4
 set expandtab
@@ -152,19 +149,29 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'tpope/vim-fugitive'
 
 
+""""""""""""""""""""" plugin unite.vim """""""""""""""""""""
+NeoBundle 'Shougo/unite.vim'
+
+""""""""""""""""""""" plugin Python Program Slice """""""""""""""""""""
+NeoBundle 'romanofski/programslice.vim'
+
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
 call neobundle#end()
-filetype plugin indent on
-" どうせだから jellybeans カラースキーマを使ってみましょう
+
+"color scheme
+colorscheme jellybeans
 set t_Co=256
 syntax on
-colorscheme jellybeans
 
-""" """ """ """ """ """ """ """ """ """ """ """ """ """ """ """ ""
-""""""""""""""""""""" MY SETTINGS"""""""""""""""""""""
-" クリップボード共有
+" 行番号表示
+set number
+"カーソルライン
+set cursorline
+" 行番号ハイライト
+hi CursorLineNr term=bold cterm=NONE ctermfg=228 ctermbg=NONE
+" クリップボード共有(Linux)
 set clipboard=unnamedplus
 
 
@@ -222,5 +229,14 @@ endfunction
 """"""""""""""""""""""""""""""
 
 " ステータスラインを変更
+" file encoding/format type y/length, percent char_hex
 :set statusline=%F%m%r%h%w\ [ENC=%{&fileencoding}/%{&ff}]\ [%Y]\ [%04l/%L,%04v][%p%%]\ [0x%B]
 :set laststatus=2
+
+" KEY MAP
+" INSERT MODE カーソル移動
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+
