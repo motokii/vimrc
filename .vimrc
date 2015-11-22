@@ -98,6 +98,7 @@ endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NeoBundle
+" http://qiita.com/himinato/items/caf5a0b19ce893a75363
 " neobundle settings {{{
 if has('vim_starting')
     set nocompatible
@@ -152,8 +153,57 @@ NeoBundle 'tpope/vim-fugitive'
 """"""""""""""""""""" plugin unite.vim """""""""""""""""""""
 NeoBundle 'Shougo/unite.vim'
 
+""""""""""""""""""""" plugin neomru.vim """""""""""""""""""""
+NeoBundle 'Shougo/neomru.vim', {
+  \ 'depends' : 'Shougo/unite.vim'
+  \ }
+
+""""""""""""""""""""" plugin neocomplete.vim """""""""""""""""""""
+if has('lua')
+  NeoBundleLazy 'Shougo/neocomplete.vim', {
+    \ 'depends' : 'Shougo/vimproc',
+    \ 'autoload' : { 'insert' : 1,}
+    \ }
+endif
+
+" neocomplete {{{
+let g:neocomplete#enable_at_startup               = 1
+let g:neocomplete#auto_completion_start_length    = 3
+let g:neocomplete#enable_ignore_case              = 1
+let g:neocomplete#enable_smart_case               = 1
+let g:neocomplete#enable_camel_case               = 1
+let g:neocomplete#use_vimproc                     = 1
+let g:neocomplete#sources#buffer#cache_limit_size = 1000000
+let g:neocomplete#sources#tags#cache_limit_size   = 30000000
+let g:neocomplete#enable_fuzzy_completion         = 1
+let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+" }}}
+
+""""""""""""""""""""" plugin vimproc """""""""""""""""""""
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+  \     'windows' : 'make -f make_mingw32.mak',
+  \     'cygwin' : 'make -f make_cygwin.mak',
+  \     'mac' : 'make -f make_mac.mak',
+  \     'unix' : 'make -f make_unix.mak',
+  \    },
+  \ }
+
+""""""""""""""""""""" plugin NERDTree """""""""""""""""""""
+NeoBundle 'scrooloose/nerdtree'
+
+""""""""""""""""""""" plugin syntastic syntax check """""""""""""""""""""
+NeoBundle 'scrooloose/syntastic'
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_save = 1
+let g:syntastic_check_on_wq = 0
+
 """"""""""""""""""""" plugin Python Program Slice """""""""""""""""""""
 NeoBundle 'romanofski/programslice.vim'
+let g:programslice_debug_file = "$HOME/.vimrc/vimrc/programslice_debug_file.txt"
 
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
@@ -232,6 +282,10 @@ endfunction
 " file encoding/format type y/length, percent char_hex
 :set statusline=%F%m%r%h%w\ [ENC=%{&fileencoding}/%{&ff}]\ [%Y]\ [%04l/%L,%04v][%p%%]\ [0x%B]
 :set laststatus=2
+" syntatic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
 " KEY MAP
 " INSERT MODE カーソル移動
