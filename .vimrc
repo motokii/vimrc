@@ -210,7 +210,22 @@ let g:programslice_debug_file = "$HOME/.vimrc/vimrc/programslice_debug_file.txt"
 NeoBundleCheck
 call neobundle#end()
 
+function! s:isLinux()
+    if stridx(system("uname"), "Linux") != -1
+        return 1
+    else
+        return 0
+    endif
+endfunction
+function! s:isMac()
+    if stridx(system("uname"), "Darwin") != -1
+        return 1
+    else
+        return 0
+    endif
+endfunction
 "color scheme
+
 colorscheme jellybeans
 set t_Co=256
 syntax on
@@ -222,7 +237,9 @@ set cursorline
 " 行番号ハイライト
 hi CursorLineNr term=bold cterm=NONE ctermfg=228 ctermbg=NONE
 " クリップボード共有(Linux)
-set clipboard=unnamedplus
+if s:isLinux()
+    set clipboard=unnamedplus
+endif
 
 
 """"""""""""""""""""""""""""""
