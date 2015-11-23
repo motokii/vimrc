@@ -258,13 +258,20 @@ if has('syntax')
 endif
 
 let s:slhlcmd = ''
+let s:isHighlighted = 0
 function! s:StatusLine(mode)
   if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
+    if s:isHighlighted == 0
+        let s:isHighlighted = 1
+        silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+        silent exec g:hi_insert
+    endif
   else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
+    if s:isHighlighted == 1
+        let s:isHighlighted = 0
+        highlight clear StatusLine
+        silent exec s:slhlcmd
+    endif
   endif
 endfunction
 
