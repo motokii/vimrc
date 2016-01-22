@@ -236,9 +236,13 @@ set number
 set cursorline
 " 行番号ハイライト
 hi CursorLineNr term=bold cterm=NONE ctermfg=228 ctermbg=NONE
-" クリップボード共有(Linux)
+
+" クリップボード共有(Linux, Mac)
 if s:isLinux()
     set clipboard=unnamedplus
+endif
+if s:isMac()
+    set clipboard=unnamed,autoselect
 endif
 
 
