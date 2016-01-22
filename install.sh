@@ -9,4 +9,4 @@ check_file() {
 check_file "$HOME/.vimrc"
 check_file "$HOME/.vim/vimrc"
 git clone https://github.com/motokii/vimrc.git $HOME/.vim/vimrc
-ln -s $HOME/.vim/vimrc/.vimrc $HOME/vimrc
+ln -s $HOME/.vim/vimrc/vimrc $HOME/.vimrc
