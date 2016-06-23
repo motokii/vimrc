@@ -205,6 +205,12 @@ let g:syntastic_check_on_wq = 0
 NeoBundle 'romanofski/programslice.vim'
 let g:programslice_debug_file = "$HOME/.vimrc/vimrc/programslice_debug_file.txt"
 
+""""""""""""""""""""" plugin vim-latex """""""""""""""""""""
+NeoBundle 'vim-latex/vim-latex'
+
+""""""""""""""""""""" plugin vim-scripts/DoxygenToolkit.vim """""""""""""""""""""
+NeoBundle 'vim-scripts/DoxygenToolkit.vim'
+
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
@@ -324,3 +330,5 @@ inoremap <C-k> <Up>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 
+" 検索
+nnoremap /  /\v
