@@ -166,6 +166,7 @@ if has('lua')
     \ }
 endif
 
+
 " neocomplete {{{
 let g:neocomplete#enable_at_startup               = 1
 let g:neocomplete#auto_completion_start_length    = 3
@@ -178,6 +179,11 @@ let g:neocomplete#sources#tags#cache_limit_size   = 30000000
 let g:neocomplete#enable_fuzzy_completion         = 1
 let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
 " }}}
+
+""""""""""""""""""""" plugin Lokaltog/vim-powerline """""""""""""""""""""
+NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
+set encoding=utf-8 " Necessary to show Unicode glyphs
+let g:Powerline_symbols='fancy'
 
 """"""""""""""""""""" plugin vimproc """""""""""""""""""""
 NeoBundle 'Shougo/vimproc', {
@@ -197,7 +203,7 @@ NeoBundle 'scrooloose/syntastic'
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 let g:syntastic_check_on_wq = 0
 
@@ -210,6 +216,17 @@ NeoBundle 'vim-latex/vim-latex'
 
 """"""""""""""""""""" plugin vim-scripts/DoxygenToolkit.vim """""""""""""""""""""
 NeoBundle 'vim-scripts/DoxygenToolkit.vim'
+
+""""""""""""""""""""" plugin tmux-plugins/vim-tmux  .tmux.conf syntax highlighting """""""""""""""""""""
+NeoBundle 'tmux-plugins/vim-tmux'
+
+""""""""""""""""""""" plugin kannokanno/previm markdown preview"""""""""""""""""""""
+NeoBundle 'kannokanno/previm'
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+augroup END
+let g:previm_open_cmd = 'open '
 
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
@@ -274,15 +291,15 @@ endif
 " 挿入モード時、ステータスラインの色を変更
 " https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
 """"""""""""""""""""""""""""""
-let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-
-if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
+" let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+" 
+" if has('syntax')
+"   augroup InsertHook
+"     autocmd!
+"     autocmd InsertEnter * call s:StatusLine('Enter')
+"     autocmd InsertLeave * call s:StatusLine('Leave')
+"   augroup END
+" endif
 
 let s:slhlcmd = ''
 let s:isHighlighted = 0
@@ -314,14 +331,19 @@ endfunction
 
 " ステータスラインを変更
 " file encoding/format type y/length, percent char_hex
-:set statusline=%F%m%r%h%w\ [ENC=%{&fileencoding}/%{&ff}]\ [%Y]\ [%04l/%L,%04v][%p%%]\ [0x%B]
-:set laststatus=2
+ :set statusline=%F%m%r%h%w\ [ENC=%{&fileencoding}/%{&ff}]\ [%Y]\ [%04l/%L,%04v][%p%%]\ [0x%B]
+ :set laststatus=2
+
 " syntatic
 if exists("*SyntasticStatuslineFlag")
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
 endif
+
+
+" fileencodings
+set fileencodings=utf-8,euc-jp
 
 " KEY MAP
 " INSERT MODE カーソル移動
@@ -332,3 +354,4 @@ inoremap <C-f> <Right>
 
 " 検索
 nnoremap /  /\v
+
