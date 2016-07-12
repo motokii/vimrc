@@ -228,6 +228,9 @@ augroup PrevimSettings
 augroup END
 let g:previm_open_cmd = 'open '
 
+""""""""""""""""""""" plugin kannokanno/previm markdown preview"""""""""""""""""""""
+NeoBundle 'editorconfig/editorconfig-vim'
+
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
@@ -328,6 +331,12 @@ function! s:GetHighlight(hi)
   return hl
 endfunction
 """"""""""""""""""""""""""""""
+
+" 入力中のコマンドを表示する
+set showcmd
+
+" 言語スタイルのインデントを自動で入れる
+set cindent
 
 " ステータスラインを変更
 " file encoding/format type y/length, percent char_hex
