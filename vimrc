@@ -290,6 +290,12 @@ if has('syntax')
 endif
 """"""""""""""""""""""""""""""
 
+
+""""""""""""""""""""""""""""""
+" スペース、タブの表示
+set list
+set listchars=tab:»-,trail:-,nbsp:%,eol:↲
+
 """"""""""""""""""""""""""""""
 " 挿入モード時、ステータスラインの色を変更
 " https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
