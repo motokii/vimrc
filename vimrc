@@ -168,17 +168,81 @@ endif
 
 
 " neocomplete {{{
-let g:neocomplete#enable_at_startup               = 1
-let g:neocomplete#auto_completion_start_length    = 3
-let g:neocomplete#enable_ignore_case              = 1
-let g:neocomplete#enable_smart_case               = 1
-let g:neocomplete#enable_camel_case               = 1
-let g:neocomplete#use_vimproc                     = 1
-let g:neocomplete#sources#buffer#cache_limit_size = 1000000
-let g:neocomplete#sources#tags#cache_limit_size   = 30000000
-let g:neocomplete#enable_fuzzy_completion         = 1
-let g:neocomplete#lock_buffer_name_pattern        = '\*ku\*'
+if neobundle#tap('neocomplete')
+  call neobundle#config({
+  \   'depends': ['Shougo/context_filetype.vim', 'ujihisa/neco-look', 'pocke/neco-gh-issues', 'Shougo/neco-syntax'],
+  \ })
+
+  " 起動時に有効化
+  let g:neocomplete#enable_at_startup = 1
+  " 大文字が入力されるまで大文字小文字の区別を無視する
+  let g:neocomplete#enable_smart_case = 1
+  " _(アンダースコア)区切りの補完を有効化
+  let g:neocomplete#enable_underbar_completion = 1
+  let g:neocomplete#enable_camel_case_completion  =  1
+  " ポップアップメニューで表示される候補の数
+  let g:neocomplete#max_list = 20
+  " シンタックスをキャッシュするときの最小文字長
+  let g:neocomplete#sources#syntax#min_keyword_length = 3
+  " 補完を表示する最小文字数
+  let g:neocomplete#auto_completion_start_length = 2
+  " preview window を閉じない
+  let g:neocomplete#enable_auto_close_preview = 0
+  AutoCmd InsertLeave * silent! pclose!
+
+  let g:neocomplete#max_keyword_width = 10000
+
+
+  if !exists('g:neocomplete#delimiter_patterns')
+    let g:neocomplete#delimiter_patterns= {}
+  endif
+  let g:neocomplete#delimiter_patterns.ruby = ['::']
+
+  if !exists('g:neocomplete#same_filetypes')
+    let g:neocomplete#same_filetypes = {}
+  endif
+  let g:neocomplete#same_filetypes.ruby = 'eruby'
+
+
+  if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+  endif
+
+  let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+  let g:neocomplete#force_omni_input_patterns.typescript = '[^. \t]\.\%(\h\w*\)\?' " Same as JavaScript
+  let g:neocomplete#force_omni_input_patterns.go = '[^. \t]\.\%(\h\w*\)\?'         " Same as JavaScript
+
+  let s:neco_dicts_dir = $HOME . '/dicts'
+  if isdirectory(s:neco_dicts_dir)
+    let g:neocomplete#sources#dictionary#dictionaries = {
+    \   'ruby': s:neco_dicts_dir . '/ruby.dict',
+    \   'javascript': s:neco_dicts_dir . '/jquery.dict',
+    \ }
+  endif
+  let g:neocomplete#data_directory = $HOME . '/.vim/cache/neocomplete'
+
+  call neocomplete#custom#source('look', 'min_pattern_length', 1)
+
+  call neobundle#untap()
+endif
 " }}}
+
+
+""""""""""""""""""""" plugin osho-manga/vim-marching """""""""""""""""""""
+NeoBundleLazy 'osyo-manga/vim-marching'
+
+if neobundle#tap('vim-marching')
+  call neobundle#config({
+  \   'autoload': {
+  \     'filetypes': ['c', 'cpp']
+  \   },
+  \   'depends': ['Shougo/vimproc.vim', 'osyo-manga/vim-reunions']
+  \ })
+
+  let g:marching_enable_neocomplete = 1
+
+  call neobundle#untap()
+endif
 
 """"""""""""""""""""" plugin Lokaltog/vim-powerline """""""""""""""""""""
 NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
@@ -206,6 +270,13 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_save = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
+let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
+let g:syntastic_mode_map = {
+      \ 'mode': 'active',
+      \ 'active_filetypes': ['javascript'],
+      \ 'passive_filetypes': []
+      \ }
 
 """"""""""""""""""""" plugin Python Program Slice """""""""""""""""""""
 NeoBundle 'romanofski/programslice.vim'
@@ -230,6 +301,12 @@ let g:previm_open_cmd = 'open '
 
 """"""""""""""""""""" plugin kannokanno/previm markdown preview"""""""""""""""""""""
 NeoBundle 'editorconfig/editorconfig-vim'
+
+""""""""""""""""""""" plugin pangloss/vim-javascript """""""""""""""""""""
+NeoBundle 'pangloss/vim-javascript'
+
+""""""""""""""""""""" plugin Twonk/vim-autoclose """""""""""""""""""""
+NeoBundle 'Townk/vim-autoclose'
 
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
