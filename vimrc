@@ -500,3 +500,11 @@ augroup vimrc-cpp
     " filetype=cpp が設定された場合に関数を呼ぶ
     autocmd FileType cpp call s:cpp()
 augroup END
+
+" insert mode から抜けたときにIMEをオフに
+set imdisable
+
+" c++を認識させる
+autocmd BufNewFile,BufRead *.{cpp,h,hpp} set filetype=cpp
+
+set tags=./tags;,tags;
