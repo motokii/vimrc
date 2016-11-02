@@ -116,8 +116,13 @@ let g:neobundle_default_git_protocol='https'
 
 " neobundle#begin - neobundle#end の間に導入するプラグインを記載します。
 NeoBundleFetch 'Shougo/neobundle.vim'
-NeoBundle 'nanotech/jellybeans.vim'
 
+" ------------------------------------
+" colorscheme
+" ------------------------------------
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'sjl/badwolf'
+NeoBundle 'tomasr/molokai'
 
 """"""""""""""""""""" plugin vim-indent-guides """""""""""""""""""""
 " インデントに色を付けて見やすくする
@@ -342,9 +347,12 @@ function! s:isMac()
         return 0
     endif
 endfunction
-"color scheme
 
-colorscheme jellybeans
+" ------------------------------------
+" colorscheme
+" ------------------------------------
+colorscheme molokai
+highlight Normal ctermbg=none
 set t_Co=256
 syntax on
 
