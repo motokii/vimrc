@@ -358,8 +358,8 @@ highlight Normal ctermbg=none
 set t_Co=256
 syntax on
 
-" 行番号表示
-set number
+" 行番号非表示
+set nonumber
 "カーソルライン
 set cursorline
 " 行番号ハイライト
