@@ -328,7 +328,9 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'pangloss/vim-javascript'
 
 """"""""""""""""""""" plugin Twonk/vim-autoclose """""""""""""""""""""
-NeoBundle 'Townk/vim-autoclose'
+" ノーマルモードに戻るのが遅くなるから消した
+" neocomplete と相性が悪いらしい
+" NeoBundle 'Townk/vim-autoclose'
 
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
@@ -508,3 +510,8 @@ set imdisable
 autocmd BufNewFile,BufRead *.{cpp,h,hpp} set filetype=cpp
 
 set tags=./tags;,tags;
+
+" ノーマルモードに戻るのが遅い
+"  (http://yukidarake.hateblo.jp/entry/2015/07/10/201356)
+" set timeout timeoutlen=50
+set timeout timeoutlen=1000 ttimeoutlen=50
