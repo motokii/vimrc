@@ -332,6 +332,9 @@ NeoBundle 'pangloss/vim-javascript'
 " neocomplete と相性が悪いらしい
 " NeoBundle 'Townk/vim-autoclose'
 
+""""""""""""""""""""" plugin Twonk/vim-autoclose """""""""""""""""""""
+NeoBundle 'yonchu/accelerated-smooth-scroll'
+
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
