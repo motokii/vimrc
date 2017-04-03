@@ -335,6 +335,9 @@ NeoBundle 'pangloss/vim-javascript'
 """"""""""""""""""""" plugin Twonk/vim-autoclose """""""""""""""""""""
 NeoBundle 'yonchu/accelerated-smooth-scroll'
 
+""""""""""""""""""""" plugin "vim-coffee-script""""""""""""""""""""
+NeoBundle 'vim-coffee-script'
+
 """"""""""""""""""""" END of PLUGIN SETTINGS """""""""""""""""""""
 " vimrc に記述されたプラグインでインストールされていないものがないかチェックする
 NeoBundleCheck
