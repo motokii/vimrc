@@ -4,9 +4,9 @@
 # INSTALL  
 Use curl:
 
-    curl -o - https://raw.githubusercontent.com/motokii/vimrc/vimrc/install.sh | sh
+    curl -o - https://raw.githubusercontent.com/motokii/vimrc/master/install.sh | sh
 
   
 Use wget:  
 
-    wget -O - https://raw.githubusercontent.com/motokii/vimrc/vimrc/install.sh | sh
+    wget -O - https://raw.githubusercontent.com/motokii/vimrc/master/install.sh | sh
