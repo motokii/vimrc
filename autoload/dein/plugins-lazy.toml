@@ -1,0 +1,25 @@
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+on_i = 1
+hook_add = 'source ~/.vim/vimrc/autoload/plugins/neocomplete.vim'
+depends = ['Shougo/vimproc.vim']
+
+
+[[plugins]]
+repo      = 'Shougo/neomru.vim'
+on_source = ['unite.vim']
+
+[[plugins]]
+repo = 'osyo-manga/vim-marching'
+on_ft = ['c', 'cpp']
+hook_add = 'source ~/.vim/vimrc/autoload/plugins/vim-marching.vim'
+depends = ['Shougo/vimproc.vim', 'osyo-manga/vim-reunions']
+
+
+[[plugins]]
+repo      = 'osyo-manga/vim-reunions'
+on_source = ['osyo-manga/vim-marching']
+
+#[[plugins]]
+#repo = 'vim-coffee-script'
+#on_ft = ['cofee']

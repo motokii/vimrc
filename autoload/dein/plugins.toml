@@ -1,0 +1,63 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+[[plugins]]
+repo = 'Shougo/unite.vim.git'
+#hook_add = 'source ~/.vim/userautoload/plugins/plugins-unite.vim'
+
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+
+[[plugins]]
+repo = 'sjl/badwolf'
+
+[[plugins]]
+repo =  'tomasr/molokai'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = 'source ~/.vim/vimrc/autoload/plugins/vim-indent-guides.vim'
+
+[[plugins]]
+repo = 'powerline/powerline'
+rtp = 'powerline/bindings/vim/'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'scrooloose/syntastic'
+hook_add = 'source ~/.vim/vimrc/autoload/plugins/syntastic.vim'
+
+[[plugins]]
+repo = 'vim-latex/vim-latex'
+
+[[plugins]]
+repo = 'vim-scripts/DoxygenToolkit.vim'
+
+[[plugins]]
+repo = 'tmux-plugins/vim-tmux'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+hook_add = 'source ~/.vim/vimrc/autoload/plugins/previm.vim'
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+
+[[plugins]]
+repo = 'yonchu/accelerated-smooth-scroll'
+
