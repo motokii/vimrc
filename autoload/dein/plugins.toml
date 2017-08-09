@@ -7,7 +7,11 @@ build = 'make'
 
 [[plugins]]
 repo = 'Shougo/unite.vim.git'
-#hook_add = 'source ~/.vim/userautoload/plugins/plugins-unite.vim'
+hook_add = 'source ~/.vim/vimrc/autoload/plugins/unite.vim'
+depends = 'neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
 
 [[plugins]]
 repo = 'nanotech/jellybeans.vim'

@@ -20,6 +20,10 @@ hook_add = 'source ~/.vim/vimrc/autoload/plugins/vim-marching.vim'
 repo      = 'osyo-manga/vim-reunions'
 on_source = ['osyo-manga/vim-marching']
 
+[[plugins]]
+repo      = 'cespare/vim-toml'
+on_ft = ['toml']
+
 #[[plugins]]
 #repo = 'vim-coffee-script'
 #on_ft = ['cofee']
