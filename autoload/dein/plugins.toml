@@ -10,9 +10,7 @@ repo = 'Shougo/unite.vim.git'
 hook_add = 'source ~/.vim/vimrc/autoload/plugins/unite.vim'
 depends = 'neomru.vim'
 
-[[plugins]]
-repo = 'Shougo/neomru.vim'
-
+# color scheme
 [[plugins]]
 repo = 'nanotech/jellybeans.vim'
 
@@ -26,19 +24,25 @@ repo =  'tomasr/molokai'
 repo = 'nathanaelkane/vim-indent-guides'
 hook_add = 'source ~/.vim/vimrc/autoload/plugins/vim-indent-guides.vim'
 
-[[plugins]]
-repo = 'powerline/powerline'
-rtp = 'powerline/bindings/vim/'
 
+#[[plugins]]
+#repo = 'powerline/powerline'
+#rtp = 'powerline/bindings/vim/'
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+# 末尾の無駄なスペースをハイライト／削除
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
 
+# VimでGit操作
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
+# 構文チェック
 [[plugins]]
 repo = 'scrooloose/syntastic'
 hook_add = 'source ~/.vim/vimrc/autoload/plugins/syntastic.vim'
@@ -46,12 +50,11 @@ hook_add = 'source ~/.vim/vimrc/autoload/plugins/syntastic.vim'
 [[plugins]]
 repo = 'vim-latex/vim-latex'
 
-[[plugins]]
-repo = 'vim-scripts/DoxygenToolkit.vim'
-
+# .tmux.conf ハイライト
 [[plugins]]
 repo = 'tmux-plugins/vim-tmux'
 
+# Markdown preview :PrevimOpen
 [[plugins]]
 repo = 'kannokanno/previm'
 hook_add = 'source ~/.vim/vimrc/autoload/plugins/previm.vim'
@@ -61,7 +64,3 @@ repo = 'editorconfig/editorconfig-vim'
 
 [[plugins]]
 repo = 'pangloss/vim-javascript'
-
-[[plugins]]
-repo = 'yonchu/accelerated-smooth-scroll'
-

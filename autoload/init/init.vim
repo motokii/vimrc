@@ -93,7 +93,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+    \ | wincmd p | diffthis
 endif
 
 
@@ -177,7 +177,7 @@ set listchars=tab:»-,trail:-,nbsp:%,eol:↲
 " https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
 """"""""""""""""""""""""""""""
 " let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-" 
+"
 " if has('syntax')
 "   augroup InsertHook
 "     autocmd!
@@ -235,6 +235,16 @@ endif
 
 " fileencodings
 set fileencodings=utf-8,euc-jp
+
+" Mac 日本語入力をOffにする
+if has('mac')
+    augroup insertLeave
+        autocmd!
+        autocmd InsertLeave * :call job_start(
+                    \ ['osascript', '-e', 'tell application "System Events" to key code {102}'],
+                    \ {'in_io': 'null', 'out_io': 'null', 'err_io': 'null'})
+    augroup END
+endif
 
 " KEY MAP
 " INSERT MODE カーソル移動
@@ -294,3 +304,4 @@ set timeout timeoutlen=1000 ttimeoutlen=50
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
